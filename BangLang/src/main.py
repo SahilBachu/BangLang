@@ -1,11 +1,19 @@
+import re
 import sys
 import os
 
 # --- DICTIONARY ---
 
 SYNTAX_MAP = {
-     "output_maadi": "print",
-    # "what_ra_loop": "while",
+     "yaavuh": "if",
+     "otherwise": "else",
+    "or_what": "elif",
+     "come_to_area": "import",
+     "put_scene": "def",
+     "cut_ra": "break",
+     "tell_da": "print",
+     "one_by_one": "for",
+     "full_waste": "None"
 }
 
 def transpile(source_code):
@@ -13,9 +21,13 @@ def transpile(source_code):
     Replaces custom keywords with Python keywords.
     """
     transpiled_code = source_code
+    sorted_keys = sorted(SYNTAX_MAP.keys(), key=len, reverse=True)
     
-    for custom_word, python_word in SYNTAX_MAP.items():
-        transpiled_code = transpiled_code.replace(custom_word, python_word)
+    for slang in sorted_keys:
+        py_kw = SYNTAX_MAP[slang]
+    
+        pattern = r'\b' + re.escape(slang) + r'\b'
+        transpiled_code = re.sub(pattern, py_kw, transpiled_code)
         
     return transpiled_code
 

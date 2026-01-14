@@ -1,1 +1,22 @@
-output_maadi("Hi")
+come_to_area time
+
+put_scene grades():
+    student_marks = [95, 40, 82, 12, -1, 60]
+    one_by_one mark in student_marks:
+
+        yaavuh mark < 0:
+            tell_da("Error: Invalid mark detected. Stopping system.")
+            cut_ra
+
+        or_what mark >= 90:
+            tell_da("Distinction")
+
+        or_what mark < 35:
+            tell_da("Cooked")
+
+        otherwise:
+            tell_da("Decent only")
+            
+    return full_waste
+
+grades()
